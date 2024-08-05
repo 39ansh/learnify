@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/(tabs)/CourseChapter.js", "app/(tabs)/CourseDetails.js", "components/Home.js", "app/Pages/Login.js", "app/(tabs)/index.js", "components/navigation/TabBarIcon.js"  ]
 }
