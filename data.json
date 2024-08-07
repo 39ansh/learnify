@@ -1,0 +1,37 @@
+{
+    "videoCourses": [
+      {
+        "id": 1,
+        "title": "React Native Basics",
+        "description": "Learn the basics of React Native.",
+        "image": "https://img.freepik.com/free-vector/setup-wizard-concept-illustration_114360-1431.jpg?t=st=1723018434~exp=1723022034~hmac=a54c6cfba0333f786a37544a9a0cd725d271197be7670e143036cdd3fbb747ec&w=740",
+        "VideoTopic": ["Introduction", "Setup", "Components"]
+      },
+      {
+        "id": 2,
+        "title": "Advanced React Native",
+        "description": "Master advanced concepts of React Native.",
+        "image": "https://img.freepik.com/premium-vector/search-social-personal-profile-vector-illustration_81522-1253.jpg?size=626&ext=jpg",
+        "VideoTopic": ["Navigation", "State Management", "Animations"]
+      }
+    ],
+    "basicCourses": [
+      {
+        "id": 1,
+        "name": "JavaScript Basics",
+        "description": "Learn the basics of JavaScript.",
+        "image": "https://img.freepik.com/free-vector/team-checklist-concept-illustration_114360-9880.jpg?t=st=1723017928~exp=1723021528~hmac=3e8ca38029a1629dded17b4ceec64e6d4f790f20cc42336d046465453ea38d0f&w=740",
+        "Topic": ["Syntax", "Loops", "Functions"]
+      }
+    ],
+    "advanceCourses": [
+      {
+        "id": 2,
+        "name": "Advanced JavaScript",
+        "description": "Master advanced concepts of JavaScript.",
+        "image": "https://img.freepik.com/free-vector/data-analysis-concept-illustration_114360-8053.jpg?t=st=1723018304~exp=1723021904~hmac=50916dafb4b3c692545cec50a4922bf223585107f273d181cb43cd8e12aa6be3&w=996",
+        "Topic": ["Async", "Promises", "Generators"]
+      }
+    ]
+  }
+  

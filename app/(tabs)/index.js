@@ -5,6 +5,7 @@ import Services from '../Shared/Services.js';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNavigation from './../Navigations/HomeNavigation';
 import Login from './../Pages/Login';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
 
@@ -26,13 +27,11 @@ export default function App() {
       <AuthContext.Provider 
       value={{userData,setUserData}}>
       {userData?
-      <NavigationContainer>
-          <HomeNavigation/>
-      </NavigationContainer>
+      <HomeNavigation/>
+
       :<Login/>}
-      
+
       </AuthContext.Provider>
-      
     </View>
   );
 }

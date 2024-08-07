@@ -1,28 +1,46 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React, { useContext } from 'react'
-import { AuthContext } from '../app/Context/AuthContext'
+// WelcomeHeader.js
+import { View, Text, Image, StyleSheet } from "react-native";
+import React from "react";
+import { AuthContext } from "./../app/Context/AuthContext";
+import { useContext } from "react";
+import { HelloWave } from "./HelloWave";
 
-export default function WelcomeHeader() {
-    const {userData,setUserData}=useContext(AuthContext)
+const WelcomeHeader = () => {
+  const { userData } = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
-        <View>
-        <Text>Hello,</Text>
-         <Text style={{fontSize:20,fontWeight:'bold'}}>{userData?.name}</Text>
-        </View>
-        <Image source={{uri:userData?.picture}}
-        style={{width:40,height:40,borderRadius:100}}
-        />
-    
+      <Text style={styles.greeting}>
+        Hello <HelloWave />
+      </Text>
+      <Text style={styles.userName}>{userData.name}</Text>
+      <Image source={{ uri: userData.picture }} style={styles.avatar} />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-        container:{
-            display:'flex',
-            flexDirection:'row',
-            justifyContent:'space-between',
-            alignItems:'center'
-        }
-})
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  greeting: {
+    fontSize: 18,
+    color: "#000",
+    fontWeight:"500"
+  },
+  userName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000",
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+});
+
+export default WelcomeHeader;

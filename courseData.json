@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "title": "React Native Basics",
+    "description": "Learn the basics of React Native.",
+    "image": "https://img.freepik.com/free-vector/setup-wizard-concept-illustration_114360-1431.jpg?t=st=1723018434~exp=1723022034~hmac=a54c6cfba0333f786a37544a9a0cd725d271197be7670e143036cdd3fbb747ec&w=740",
+    "VideoTopic": [
+      {
+        "id": 1,
+        "name": "Introduction",
+        "Topic": "Introduction to the course"
+      },
+      {
+        "id": 2,
+        "name": "Setup",
+        "Topic": "Setting up the environment"
+      },
+      {
+        "id": 3,
+        "name": "Components",
+        "Topic": "Understanding components"
+      }
+    ]
+  }
+  
