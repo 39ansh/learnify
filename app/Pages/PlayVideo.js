@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-// Example JSON data
 const videoData = {
   "id": 1,
   "title": "React Native Basics",
@@ -15,26 +14,26 @@ const videoData = {
       "id": 1,
       "name": "Introduction",
       "Topic": "Introduction to the course",
-      "videoUrl": "https://youtu.be/ZBCUegTZF7M" // Use video ID part
+      "videoUrl": "https://www.youtube.com/watch?v=ZBCUegTZF7M"
     },
     {
       "id": 2,
       "name": "Setup",
       "Topic": "Setting up the environment",
-      "videoUrl": "https://youtu.be/ZBCUegTZF7M" // Use video ID part
+      "videoUrl": "https://www.youtube.com/watch?v=ZBCUegTZF7M"
     },
     {
       "id": 3,
       "name": "Components",
       "Topic": "Understanding components",
-      "videoUrl": "https://youtu.be/ZBCUegTZF7M" // Use video ID part
+      "videoUrl": "https://www.youtube.com/watch?v=ZBCUegTZF7M"
     }
   ]
 };
 
 function extractVideoId(url) {
   const match = url.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/) ||
-                url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/);
+    url.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/);
   console.log("Extracted Video ID:", match ? match[1] : null); // Debug log
   return match ? match[1] : null;
 }
@@ -42,13 +41,16 @@ function extractVideoId(url) {
 export default function PlayVideo() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { videoId } = route.params;
+  const { courseContent } = route.params;  // Destructure courseContent from route params
+  const { id: videoId } = courseContent;  // Extract id from courseContent and rename it to videoId
 
   const [videoChapter, setVideoChapter] = useState(null);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
+    console.log("Route params:", route.params); // Debug log
     const selectedVideo = videoData.VideoTopic.find(item => item.id === videoId);
+    console.log("Selected video:", selectedVideo); // Debug log
     if (selectedVideo) {
       const videoId = extractVideoId(selectedVideo.videoUrl);
       console.log("Selected Video Data:", { ...selectedVideo, videoId }); // Debug log

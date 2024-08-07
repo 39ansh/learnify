@@ -1,59 +1,35 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
-import Colors from "../Shared/Colors";
+import React, { useState, useContext } from "react";
+import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
-import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
-import { TouchableOpacity } from "react-native";
+import Colors from "../Shared/Colors";
 import { AuthContext } from "../Context/AuthContext";
-import Services from "../Shared/Services";
+
 export default function Login() {
-  WebBrowser.maybeCompleteAuthSession();
-  const [accessToken, setAccessToken] = useState();
-  const [userInfo, setUserInfo] = useState();
-  const { userData, setUserData } = useContext(AuthContext);
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    iosClientId:
-      "664980943899-n25vpk9tvka8o3q3j2539ojb55o8b1n3.apps.googleusercontent.com",
-    expoClientId:
-      "55959786226-llk648p590tvtaoklnv4o89mtjtenecr.apps.googleusercontent.com",
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUserData } = useContext(AuthContext);
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    if (response?.type == "success") {
-      setAccessToken(response.authentication.accessToken);
-
-      getUserData();
+  const handleLogin = () => {
+    if (email === '' || password === '') {
+      Alert.alert('Error', 'Please fill in all fields.');
+      return;
     }
-  }, [response]);
 
-  const getUserData = async () => {
-    try {
-      const resp = await fetch("https://www.googleapis.com/userinfo/v2/me", {
-        headers: {
-          Authorization: `Bearer ${response.authentication.accessToken}`,
-        },
+    if (email === 'test' && password === 'test') {
+      setUserData({
+        name: "User",
+        picture: "https://img.freepik.com/premium-vector/picture-man-with-blue-shirt-picture-man-with-computer-middle_1108514-98821.jpg?w=740",
+        email: "user@gmail.com",
+        id: 1,
       });
-
-      const user = await resp.json();
-      console.log("user Details", user);
-      setUserInfo(user);
-      setUserData(user);
-      await Services.setUserAuth(user);
-    } catch (error) {
-      // Add your own error handler here
+      navigation.navigate('home');
+    } else {
+      Alert.alert('Error', 'Invalid credentials.');
     }
   };
-  const handleSkip = () => {
-    setUserData({
-      name: "Rahul Sanap",
-      picture:
-        "https://img.freepik.com/premium-vector/picture-man-with-blue-shirt-picture-man-with-computer-middle_1108514-98821.jpg?w=740",
-      email: "rahul@gmail.com",
-      id: 1,
-    });
-    navigation.push("home");
-  };
+
   return (
     <View>
       <Image source={require("../../components/Images/login.png")} />
@@ -62,17 +38,31 @@ export default function Login() {
         <Text style={{ textAlign: "center", marginTop: 80, fontSize: 20 }}>
           Login/Signup
         </Text>
-        <TouchableOpacity style={styles.button} onPress={() => promptAsync()}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Ionicons
-            name="logo-google"
+            name="log-in"
             size={24}
             color="white"
             style={{ marginRight: 10 }}
           />
-          <Text style={{ color: Colors.white }}>Sign In with Google</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-          <Text style={styles.buttonText}>Skip</Text>
+          <Text style={{ color: Colors.white }}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -92,6 +82,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
+  inputContainer: {
+    paddingHorizontal: 20,
+    marginVertical: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 10,
+  },
   button: {
     backgroundColor: Colors.primary,
     padding: 10,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   skipButton: {
     backgroundColor: Colors.primary,
     padding: 10,
-    margin:40,
+    margin: 40,
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
