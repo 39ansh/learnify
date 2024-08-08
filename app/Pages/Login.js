@@ -17,9 +17,9 @@ export default function Login() {
       return;
     }
 
-    if (email === 'test' && password === 'test') {
+    if (email === 'ansh@gmail.com' && password === 'test') {
       setUserData({
-        name: "User",
+        name: "Ansh",
         picture: "https://img.freepik.com/premium-vector/picture-man-with-blue-shirt-picture-man-with-computer-middle_1108514-98821.jpg?w=740",
         email: "user@gmail.com",
         id: 1,

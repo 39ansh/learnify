@@ -76,3 +76,4 @@ export function CourseContent({ course, userProgress, courseType }) {
     </View>
   );
 }
+
