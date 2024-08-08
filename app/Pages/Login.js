@@ -34,7 +34,7 @@ export default function Login() {
     <View>
       <Image source={require("../../components/Images/login.png")} />
       <View style={styles.container}>
-        <Text style={styles.welcomeText}>Welcome to CodeBox</Text>
+        <Text style={styles.welcomeText}>Welcome to Learnify</Text>
         <Text style={{ textAlign: "center", marginTop: 80, fontSize: 20 }}>
           Login/Signup
         </Text>
